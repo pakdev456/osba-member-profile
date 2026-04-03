@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Data OSBA - Organisasi Santri Babussalam"
+version = "1.0.0"
+id = "artifacts/osba-profile"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 26053
+
+[services.development]
+run = "pnpm --filter @workspace/osba-profile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/osba-profile", "run", "build" ]
+publicDir = "artifacts/osba-profile/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "26053"
+BASE_PATH = "/"

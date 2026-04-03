@@ -1,0 +1,33 @@
+{
+  "divisi": "Keamanan",
+  "warna": "#e63946",
+  "anggota": [
+    {
+      "id": 1,
+      "nama": "Dimas Prabowo Santoso",
+      "panggilan": "Dimas",
+      "nomorSantri": "001.1223.021",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/dimas_prabowo",
+      "divisi": "Divisi Keamanan"
+    },
+    {
+      "id": 2,
+      "nama": "Bagas Tri Wibowo",
+      "panggilan": "Bagas",
+      "nomorSantri": "001.1223.033",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/bagas_tri",
+      "divisi": "Divisi Keamanan"
+    },
+    {
+      "id": 3,
+      "nama": "Arif Rahman Hakim",
+      "panggilan": "Arif",
+      "nomorSantri": "001.1223.045",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/arif_rahman",
+      "divisi": "Divisi Keamanan"
+    }
+  ]
+}

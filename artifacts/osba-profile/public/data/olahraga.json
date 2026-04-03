@@ -1,0 +1,33 @@
+{
+  "divisi": "Olahraga",
+  "warna": "#fb5607",
+  "anggota": [
+    {
+      "id": 1,
+      "nama": "Kevin Ardiansyah Putra",
+      "panggilan": "Kevin",
+      "nomorSantri": "001.1223.093",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/kevin_ardian",
+      "divisi": "Divisi Olahraga"
+    },
+    {
+      "id": 2,
+      "nama": "Dani Kurniawan Fauzi",
+      "panggilan": "Dani",
+      "nomorSantri": "001.1223.101",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/dani_kurniawan",
+      "divisi": "Divisi Olahraga"
+    },
+    {
+      "id": 3,
+      "nama": "Wahyu Setiadi Rahman",
+      "panggilan": "Wahyu",
+      "nomorSantri": "001.1223.109",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/wahyu_setiadi",
+      "divisi": "Divisi Olahraga"
+    }
+  ]
+}

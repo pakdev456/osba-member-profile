@@ -1,0 +1,33 @@
+{
+  "divisi": "Bahasa",
+  "warna": "#3a86ff",
+  "anggota": [
+    {
+      "id": 1,
+      "nama": "Hendra Wijaya Kusuma",
+      "panggilan": "Hendra",
+      "nomorSantri": "001.1223.074",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/hendra_wijaya",
+      "divisi": "Divisi Bahasa"
+    },
+    {
+      "id": 2,
+      "nama": "Yoga Pratama Setiawan",
+      "panggilan": "Yoga",
+      "nomorSantri": "001.1223.081",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/yoga_pratama",
+      "divisi": "Divisi Bahasa"
+    },
+    {
+      "id": 3,
+      "nama": "Iqbal Maulana Rizky",
+      "panggilan": "Iqbal",
+      "nomorSantri": "001.1223.089",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/iqbal_maulana",
+      "divisi": "Divisi Bahasa"
+    }
+  ]
+}
