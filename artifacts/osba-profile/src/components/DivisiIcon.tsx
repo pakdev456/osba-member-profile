@@ -73,6 +73,11 @@ export function DivisiIcon({ icon, color, size = 28 }: DivisiIconProps) {
         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
     ),
+    kesehatan: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width={size} height={size}>
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    ),
   };
 
   return (
