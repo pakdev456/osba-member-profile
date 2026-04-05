@@ -1,0 +1,33 @@
+{
+  "divisi": "Kesehatan",
+  "warna": "#06b6d4",
+  "anggota": [
+    {
+      "id": 1,
+      "nama": "Muhammad Hafidz Ramadhan",
+      "panggilan": "Hafidz",
+      "nomorSantri": "001.1223.180",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/hafidz_ramadhan",
+      "divisi": "Divisi Kesehatan"
+    },
+    {
+      "id": 2,
+      "nama": "Fadhil Arrahman Siregar",
+      "panggilan": "Fadhil",
+      "nomorSantri": "001.1223.187",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/fadhil_arrahman",
+      "divisi": "Divisi Kesehatan"
+    },
+    {
+      "id": 3,
+      "nama": "Zaki Mubarak Harahap",
+      "panggilan": "Zaki",
+      "nomorSantri": "001.1223.194",
+      "masaJabatan": "2026 - 2027",
+      "instagram": "https://instagram.com/zaki_mubarak",
+      "divisi": "Divisi Kesehatan"
+    }
+  ]
+}
