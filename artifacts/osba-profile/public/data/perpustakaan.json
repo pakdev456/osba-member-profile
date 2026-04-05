@@ -4,29 +4,20 @@
   "anggota": [
     {
       "id": 1,
-      "nama": "Hafiz Abdurrahman Siddiq",
-      "panggilan": "Hafiz",
-      "nomorSantri": "001.1223.115",
+      "nama": "Arsad Ramdani Putra ",
+      "panggilan": "Arsyad",
+      "nomorSantri": "-",
       "masaJabatan": "2026 - 2027",
-      "instagram": "https://instagram.com/hafiz_abdurrahman",
+      "instagram": "https://www.instagram.com/rp_arsyad/",
       "divisi": "Divisi Perpustakaan"
     },
     {
       "id": 2,
-      "nama": "Fauzan Hidayatullah",
-      "panggilan": "Fauzan",
-      "nomorSantri": "001.1223.123",
+      "nama": "Muhammad Fawwaz Rasyadi Arfa",
+      "panggilan": "Rasyadi",
+      "nomorSantri": "-",
       "masaJabatan": "2026 - 2027",
-      "instagram": "https://instagram.com/fauzan_hidayat",
-      "divisi": "Divisi Perpustakaan"
-    },
-    {
-      "id": 3,
-      "nama": "Irfan Maulana Hasan",
-      "panggilan": "Irfan",
-      "nomorSantri": "001.1223.131",
-      "masaJabatan": "2026 - 2027",
-      "instagram": "https://instagram.com/irfan_maulana",
+      "instagram": "https://www.instagram.com/fawwaz_rosyadi/",
       "divisi": "Divisi Perpustakaan"
     }
   ]

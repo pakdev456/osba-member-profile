@@ -4,30 +4,12 @@
   "anggota": [
     {
       "id": 1,
-      "nama": "Ridwan Nur Fajri",
-      "panggilan": "Ridwan",
-      "nomorSantri": "001.1223.158",
-      "masaJabatan": "2026 - 2027",
-      "instagram": "https://instagram.com/ridwan_fajri",
-      "divisi": "Divisi Humas"
-    },
-    {
-      "id": 2,
-      "nama": "Aldi Firmansyah",
-      "panggilan": "Aldi",
-      "nomorSantri": "001.1223.165",
-      "masaJabatan": "2026 - 2027",
-      "instagram": "https://instagram.com/aldi_firman",
-      "divisi": "Divisi Humas"
-    },
-    {
-      "id": 3,
-      "nama": "Raihan Aulia Akbar",
-      "panggilan": "Raihan",
-      "nomorSantri": "001.1223.172",
-      "masaJabatan": "2026 - 2027",
-      "instagram": "https://instagram.com/raihan_aulia",
-      "divisi": "Divisi Humas"
+      "nama": "",
+      "panggilan": "",
+      "nomorSantri": "",
+      "masaJabatan": "",
+      "instagram": "",
+      "divisi": ""
     }
   ]
 }

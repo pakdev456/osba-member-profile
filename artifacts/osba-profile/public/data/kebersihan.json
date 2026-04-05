@@ -4,30 +4,12 @@
   "anggota": [
     {
       "id": 1,
-      "nama": "Andika Surya Putra",
-      "panggilan": "Andika",
-      "nomorSantri": "001.1223.052",
-      "masaJabatan": "2026 - 2027",
-      "instagram": "https://instagram.com/andika_surya",
-      "divisi": "Divisi Kebersihan"
-    },
-    {
-      "id": 2,
-      "nama": "Reza Maulana Akbar",
-      "panggilan": "Reza",
-      "nomorSantri": "001.1223.058",
-      "masaJabatan": "2026 - 2027",
-      "instagram": "https://instagram.com/reza_maulana",
-      "divisi": "Divisi Kebersihan"
-    },
-    {
-      "id": 3,
-      "nama": "Fahmi Dwi Saputra",
-      "panggilan": "Fahmi",
-      "nomorSantri": "001.1223.067",
-      "masaJabatan": "2026 - 2027",
-      "instagram": "https://instagram.com/fahmi_dwi",
-      "divisi": "Divisi Kebersihan"
+      "nama": "",
+      "panggilan": "",
+      "nomorSantri": "",
+      "masaJabatan": "",
+      "instagram": "",
+      "divisi": ""
     }
   ]
 }
