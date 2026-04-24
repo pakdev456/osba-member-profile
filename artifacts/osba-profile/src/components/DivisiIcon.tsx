@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface DivisiIconProps {
   icon: string;
   color: string;
@@ -5,7 +7,7 @@ interface DivisiIconProps {
 }
 
 export function DivisiIcon({ icon, color, size = 28 }: DivisiIconProps) {
-  const icons: Record<string, JSX.Element> = {
+  const icons: Record<string, React.ReactElement> = {
     ibadah: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width={size} height={size}>
         <path d="M12 2a5 5 0 0 1 5 5v1H7V7a5 5 0 0 1 5-5z"/>
