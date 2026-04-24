@@ -1,7 +1,0 @@
-../..
-..
-*.md
-.git
-.gitignore
-.env.local
-.vercel
