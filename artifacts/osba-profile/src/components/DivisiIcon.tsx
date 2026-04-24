@@ -44,12 +44,7 @@ export function DivisiIcon({ icon, color, size = 28 }: DivisiIconProps) {
     ),
     olahraga: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width={size} height={size}>
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M4.93 4.93l4.24 4.24"/>
-        <path d="M14.83 9.17l4.24-4.24"/>
-        <path d="M14.83 14.83l4.24 4.24"/>
-        <path d="M9.17 14.83l-4.24 4.24"/>
-        <circle cx="12" cy="12" r="4"/>
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
       </svg>
     ),
     perpustakaan: (
