@@ -10,13 +10,13 @@ export const divisiList: DivisiInfo[] = [
   {
     nama: "Keamanan",
     slug: "keamanan",
-    warna: "#5dade2",
+    warna: "#0d47a1",
     icon: "keamanan",
   },
   {
     nama: "Kebersihan",
     slug: "kebersihan",
-    warna: "#7be495",
+    warna: "#1b5e20",
     icon: "kebersihan",
   },
   {

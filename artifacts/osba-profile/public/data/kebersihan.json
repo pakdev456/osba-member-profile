@@ -1,15 +1,15 @@
 {
   "divisi": "Kebersihan",
-  "warna": "#7209b7",
+"warna": "#1b5e20",
   "anggota": [
     {
       "id": 1,
-      "nama": "",
-      "panggilan": "",
+      "nama": "Abdul Malik",
+      "panggilan": "Malik",
       "nomorSantri": "",
-      "masaJabatan": "",
+      "masaJabatan": "2026-2027",
       "instagram": "",
-      "divisi": ""
+      "divisi": "Divisi Kebersihan"
     }
   ]
 }

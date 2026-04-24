@@ -22,7 +22,7 @@ export function DivisiIcon({ icon, color, size = 28 }: DivisiIconProps) {
         <path d="M9 12l2 2 4-4"/>
       </svg>
     ),
-    kebersihan: (
+ kebersihan: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width={size} height={size}>
         <path d="M3 6l9-4 9 4"/>
         <path d="M21 6v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6"/>
@@ -32,7 +32,7 @@ export function DivisiIcon({ icon, color, size = 28 }: DivisiIconProps) {
         <path d="M3 12h18"/>
       </svg>
     ),
-    bahasa: (
+     bahasa: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width={size} height={size}>
         <path d="M2 5h7"/>
         <path d="M5 2v16"/>
