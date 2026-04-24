@@ -15,10 +15,10 @@ paths = [ "/" ]
 localPort = 26053
 
 [services.development]
-run = "pnpm --filter @workspace/osba-profile run dev"
+run = "npm --workspace @workspace/osba-profile run dev"
 
 [services.production]
-build = [ "pnpm", "--filter", "@workspace/osba-profile", "run", "build" ]
+build = [ "npm", "--workspace", "@workspace/osba-profile", "run", "build" ]
 publicDir = "artifacts/osba-profile/dist/public"
 serve = "static"
 
