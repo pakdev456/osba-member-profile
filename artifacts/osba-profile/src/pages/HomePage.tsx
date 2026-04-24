@@ -1,12 +1,9 @@
-import { useState } from "react";
+import { Link } from "wouter";
 import { divisiList } from "../data/divisi";
 import { DivisiIcon } from "../components/DivisiIcon";
 import { OsbaLogo } from "../components/OsbaLogo";
-import { DivisiModal } from "../components/DivisiModal";
 
 export default function HomePage() {
-  const [selectedDivisi, setSelectedDivisi] = useState<string | null>(null);
-
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <header className="sticky top-0 bg-white border-b border-gray-100 z-10 px-6 py-3 flex items-center gap-2 shadow-sm">
@@ -23,16 +20,16 @@ export default function HomePage() {
             Organisasi Santri<br />Babussalam
           </h1>
           <p className="text-gray-500 mt-3 text-center max-w-sm text-sm leading-relaxed">
-            Struktur Kepengurusan OSBA terbagi dalam 8 divisi utama. Pilih divisi untuk melihat anggota organisasi.
+            Struktur Kepengurusan OSBA terbagi dalam {divisiList.length} divisi utama. Pilih divisi untuk melihat anggota organisasi.
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl">
           {divisiList.map((divisi) => (
-            <button
+            <Link
               key={divisi.slug}
-              onClick={() => setSelectedDivisi(divisi.slug)}
-              className="group flex flex-col items-start gap-3 p-5 rounded-2xl border border-gray-100 bg-white hover:border-gray-200 hover:shadow-md transition-all duration-200 cursor-pointer text-left"
+              href={`/${divisi.slug}`}
+              className="group flex flex-col items-start gap-3 p-5 rounded-2xl border border-gray-100 bg-white hover:border-gray-200 hover:shadow-md transition-all duration-200 cursor-pointer text-left no-underline"
             >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center"
@@ -45,7 +42,7 @@ export default function HomePage() {
                 <p className="text-xs text-gray-400 mt-0.5">Lihat Anggota</p>
               </div>
               <span className="text-gray-400 text-sm group-hover:translate-x-1 transition-transform">→</span>
-            </button>
+            </Link>
           ))}
         </div>
       </main>
@@ -56,13 +53,6 @@ export default function HomePage() {
           © 2026 Organisasi Santri Babussalam. All rights reserved.
         </p>
       </footer>
-
-      {selectedDivisi && (
-        <DivisiModal
-          slug={selectedDivisi}
-          onClose={() => setSelectedDivisi(null)}
-        />
-      )}
     </div>
   );
 }
