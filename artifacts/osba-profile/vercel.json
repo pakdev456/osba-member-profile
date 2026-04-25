@@ -1,6 +1,6 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "artifacts/osba-profile/dist",
+  "outputDirectory": "artifacts/osba-profile/dist/public",
   "installCommand": "npm install --legacy-peer-deps",
   "framework": "vite",
   "rewrites": [
