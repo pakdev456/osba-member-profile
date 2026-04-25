@@ -18,7 +18,7 @@ export function DivisiModal({ slug, onClose }: DivisiModalProps) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${import.meta.env.BASE_URL}data/${slug}.json`)
+    fetch(`${import.meta.env.BASE_URL}data/${slug}.json?v=2`, { cache: "no-store" })
       .then((r) => r.json())
       .then((json: DivisiData) => {
         setData(json);

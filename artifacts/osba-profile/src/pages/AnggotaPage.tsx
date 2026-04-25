@@ -18,7 +18,7 @@ export default function AnggotaPage() {
     if (!slug) return;
     setLoading(true);
     setError(false);
-    fetch(`${import.meta.env.BASE_URL}data/${slug}.json`)
+    fetch(`${import.meta.env.BASE_URL}data/${slug}.json?v=2`, { cache: "no-store" })
       .then((r) => {
         if (!r.ok) throw new Error("Not found");
         return r.json();
