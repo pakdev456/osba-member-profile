@@ -1,23 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <rect width="100" height="100" rx="18" fill="#0f766e"/>
-  <g fill="white">
-    <path d="M50 14 C45 14 41 18 41 23 C41 28 45 32 50 32 C45 32 42 29 42 25 C42 21 45 18 50 18 C52 18 54 19 56 20 C54 16 52 14 50 14 Z" opacity="0.95"/>
-    <circle cx="55" cy="22" r="1.6" opacity="0.95"/>
-    <rect x="11" y="46" width="7" height="32" rx="1"/>
-    <path d="M11 46 L14.5 35 L18 46 Z"/>
-    <rect x="13" y="32" width="3" height="4" rx="1"/>
-    <circle cx="14.5" cy="31" r="1.6"/>
-    <rect x="82" y="46" width="7" height="32" rx="1"/>
-    <path d="M82 46 L85.5 35 L89 46 Z"/>
-    <rect x="84" y="32" width="3" height="4" rx="1"/>
-    <circle cx="85.5" cy="31" r="1.6"/>
-    <rect x="22" y="56" width="56" height="22" rx="2"/>
-    <path d="M28 56 Q50 30 72 56 Z"/>
-    <path d="M22 56 Q31 45 40 56 Z" opacity="0.85"/>
-    <path d="M60 56 Q69 45 78 56 Z" opacity="0.85"/>
-    <rect x="8" y="78" width="84" height="5" rx="1"/>
-  </g>
-  <path d="M44 78 L44 66 Q50 61 56 66 L56 78 Z" fill="#0f766e"/>
-  <rect x="28" y="64" width="8" height="8" rx="4" fill="#0f766e" opacity="0.6"/>
-  <rect x="64" y="64" width="8" height="8" rx="4" fill="#0f766e" opacity="0.6"/>
+  <!-- Background -->
+  <rect width="100" height="100" fill="#ffffff"/>
+  <!-- Mosque building -->
+  <rect x="15" y="50" width="70" height="40" fill="#0066cc" rx="5"/>
+  <!-- Dome -->
+  <circle cx="50" cy="45" r="20" fill="#0066cc"/>
+  <!-- Minaret -->
+  <rect x="75" y="20" width="10" height="60" fill="#0066cc" rx="2"/>
+  <!-- Crescent moon -->
+  <path d="M 80 15 A 8 8 0 0 1 80 31 A 4 4 0 0 0 80 23 A 4 4 0 0 1 80 15 Z" fill="#ffffff"/>
 </svg>
