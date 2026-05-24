@@ -55,4 +55,10 @@ export const divisiList: DivisiInfo[] = [
     warna: "#dc2626",
     icon: "kesehatan",
   },
+  {
+    nama: "Eksekutif",
+    slug: "eksekutif",
+    warna: "#1d3461",
+    icon: "eksekutif",
+  },
 ];
