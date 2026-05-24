@@ -2,6 +2,12 @@ import type { DivisiInfo } from "../types";
 
 export const divisiList: DivisiInfo[] = [
   {
+    nama: "Eksekutif",
+    slug: "eksekutif",
+    warna: "#1d3461",
+    icon: "eksekutif",
+  },
+  {
     nama: "Ibadah",
     slug: "ibadah",
     warna: "#2a9d8f",

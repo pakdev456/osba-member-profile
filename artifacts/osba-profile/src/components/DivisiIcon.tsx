@@ -77,9 +77,10 @@ export function DivisiIcon({ icon, color, size = 28 }: DivisiIconProps) {
     ),
     eksekutif: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width={size} height={size}>
-        <path d="M4 21h16V11L12 4 4 11v10Z"/>
-        <path d="M9 21V12h6v9"/>
-        <path d="M8 11h8"/>
+        <path d="M4 14l2-4 4 2 4-2 2 4 3 1-1 3-17-1 1-3 3-1Z"/>
+        <path d="M6 12l3-1 3 1 3-1"/>
+        <path d="M9 17v3"/>
+        <path d="M15 17v3"/>
       </svg>
     ),
   };
