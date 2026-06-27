@@ -22,14 +22,10 @@ export function DivisiIcon({ icon, color, size = 28 }: DivisiIconProps) {
         <path d="M9 12l2 2 4-4"/>
       </svg>
     ),
- kebersihan: (
+    kebersihan: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width={size} height={size}>
-        <path d="M3 6l9-4 9 4"/>
-        <path d="M21 6v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6"/>
-        <path d="M8 22V12"/>
-        <path d="M16 22V12"/>
-        <path d="M12 22V12"/>
-        <path d="M3 12h18"/>
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.6 2 8.9a7 7 0 0 1-14 0z"/>
+        <path d="M12 20c0-6.5 3.5-10 7-12"/>
       </svg>
     ),
      bahasa: (
@@ -76,11 +72,17 @@ export function DivisiIcon({ icon, color, size = 28 }: DivisiIconProps) {
       </svg>
     ),
     eksekutif: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width={size} height={size}>
-        <path d="M4 14l2-4 4 2 4-2 2 4 3 1-1 3-17-1 1-3 3-1Z"/>
-        <path d="M6 12l3-1 3 1 3-1"/>
-        <path d="M9 17v3"/>
-        <path d="M15 17v3"/>
+      <svg viewBox="0 0 24 24" width={size} height={size}>
+        <path
+          fill="#FFD700"
+          stroke="#B8860B"
+          strokeWidth="0.6"
+          strokeLinejoin="round"
+          d="M2 19h20v2H2v-2zm2-4 2-8 3 4 3-6 3 6 3-4 2 8H4z"
+        />
+        <circle fill="#FFF8DC" cx="5" cy="8" r="1.2" />
+        <circle fill="#FFF8DC" cx="12" cy="5" r="1.2" />
+        <circle fill="#FFF8DC" cx="19" cy="8" r="1.2" />
       </svg>
     ),
   };
