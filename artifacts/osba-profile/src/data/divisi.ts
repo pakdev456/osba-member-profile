@@ -4,7 +4,7 @@ export const divisiList: DivisiInfo[] = [
   {
     nama: "Eksekutif",
     slug: "eksekutif",
-    warna: "#1d3461",
+    warna: "#f4a261",
     icon: "eksekutif",
   },
   {

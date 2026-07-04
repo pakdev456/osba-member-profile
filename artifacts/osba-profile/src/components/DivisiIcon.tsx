@@ -72,17 +72,10 @@ export function DivisiIcon({ icon, color, size = 28 }: DivisiIconProps) {
       </svg>
     ),
     eksekutif: (
-      <svg viewBox="0 0 24 24" width={size} height={size}>
-        <path
-          fill="#FFD700"
-          stroke="#B8860B"
-          strokeWidth="0.6"
-          strokeLinejoin="round"
-          d="M2 19h20v2H2v-2zm2-4 2-8 3 4 3-6 3 6 3-4 2 8H4z"
-        />
-        <circle fill="#FFF8DC" cx="5" cy="8" r="1.2" />
-        <circle fill="#FFF8DC" cx="12" cy="5" r="1.2" />
-        <circle fill="#FFF8DC" cx="19" cy="8" r="1.2" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width={size} height={size}>
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
       </svg>
     ),
   };
