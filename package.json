@@ -9,7 +9,7 @@
     "scripts"
   ],
   "scripts": {
-    "dev":"vite",
+    "dev": "vite",
     "build": "npm run typecheck && npm run build --workspaces --if-present",
     "typecheck:libs": "tsc --build",
     "typecheck": "npm run typecheck:libs && npm run typecheck --workspaces --if-present",
@@ -20,6 +20,7 @@
     "typescript": "~5.9.2"
   },
   "dependencies": {
-    "@vercel/speed-insights": "^2.0.0"
+    "@vercel/speed-insights": "^2.0.0",
+    "zod": "^4.4.3"
   }
 }
