@@ -8,8 +8,8 @@ interface AnggotaCardProps {
 
 export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
   return (
-    <div className="perspective-1000 group w-full max-w-sm mx-auto p-4">
-      <div className="transition-all duration-700 ease-out transform-style-3d group-hover:rotate-y-12 group-hover:rotate-x-6 shadow-[0_20px_50px_rgba(0,0,0,0.2)] rounded-[2.5rem] bg-white border-2 border-white/50 relative overflow-hidden">
+    <div className="perspective-[1000px] group w-full max-w-sm mx-auto p-4">
+      <div className="transition-all duration-700 ease-out transform-3d group-hover:rotate-y-12 group-hover:rotate-x-6 shadow-[0_20px_50px_rgba(0,0,0,0.2)] rounded-[2.5rem] bg-white border-2 border-white/50 relative overflow-hidden">
         {/* Glow Effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none" />
         
