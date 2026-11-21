@@ -143,7 +143,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
         
         {/* Indikator Gesture / Swipe Interaktif */}
         <div className="flex items-center gap-1.5 text-[11px] font-medium text-gray-500 bg-white/70 backdrop-blur-xs px-3 py-1 rounded-full border border-gray-200/60 shadow-2xs">
-          <span>👆</span>
+          <span></span>
           <span>Geser kartu untuk membalik</span>
         </div>
       </div>
