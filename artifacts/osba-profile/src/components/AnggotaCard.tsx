@@ -17,8 +17,18 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   // Deteksi slug divisi untuk ikon divisi
-  const divisiSlug =
-    anggota.divisi?.toLowerCase().replace(/^divisi\s+/, "").trim() || "eksekutif";
+  const rawDivisi = anggota.divisi?.toLowerCase() || "";
+  let divisiSlug = "bph";
+  if (rawDivisi.includes("ibadah")) divisiSlug = "ibadah";
+  else if (rawDivisi.includes("keamanan")) divisiSlug = "keamanan";
+  else if (rawDivisi.includes("kebersihan")) divisiSlug = "kebersihan";
+  else if (rawDivisi.includes("bahasa")) divisiSlug = "bahasa";
+  else if (rawDivisi.includes("olahraga")) divisiSlug = "olahraga";
+  else if (rawDivisi.includes("perpustakaan")) divisiSlug = "perpustakaan";
+  else if (rawDivisi.includes("kreatif") || rawDivisi.includes("publikasi")) divisiSlug = "kreatif";
+  else if (rawDivisi.includes("humas")) divisiSlug = "humas";
+  else if (rawDivisi.includes("kesehatan")) divisiSlug = "kesehatan";
+  else if (rawDivisi.includes("bph") || rawDivisi.includes("eksekutif")) divisiSlug = "bph";
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -48,7 +58,9 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
   };
 
   // Label jabatan untuk pill style
-  const divisionCleanName = anggota.divisi.replace(/^Divisi\s+/i, "");
+  const divisionCleanName = anggota.divisi
+    .replace(/^Divisi\s+/i, "")
+    .replace(/^BPH\s*\((.*?)\)/i, "$1");
 
   return (
     <div className="flex flex-col items-center justify-center p-2 sm:p-4 select-none">
@@ -189,7 +201,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
 
             {/* Bagian Bawah: Blue Bar Elegan (Sesuai Foto ID Card) */}
             <div className="relative z-10 bg-gradient-to-r from-[#143468] via-[#173e80] to-[#1e4eb8] text-white p-5 rounded-b-[1.7rem] shadow-xl">
-              <div className="relative flex flex-col gap-1.5 pb-2">
+              <div className="relative flex flex-col gap-1.5 pb-1">
                 {/* Baris Atas: Nama Panggilan Besar */}
                 <h3 className="text-2xl font-black tracking-tight leading-none text-white drop-shadow-sm">
                   {anggota.panggilan || anggota.nama.split(" ")[0]}
@@ -205,7 +217,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
                   {anggota.nomorSantri || "-"}
                 </p>
 
-                {/* Button Member Pill (Bentuk Pill Oval dengan Outer Ring & Fill Putih di Kanan) */}
+                {/* Button Member Pill & Domain di Ujung Bawah Kanan */}
                 <div className="mt-2 flex items-center justify-between">
                   <div className="inline-flex items-center rounded-full border border-white/50 p-[2px] bg-white/10 backdrop-blur-xs shadow-xs">
                     <span className="px-2.5 py-0.5 text-[10px] font-semibold text-white/95">
@@ -232,10 +244,10 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
           </div>
 
           {/* ========================================================= */}
-          {/* SISI BELAKANG (BACK) - Sesuai Persis dengan Gambar 2       */}
+          {/* SISI BELAKANG (BACK) - Layout Bersih & Rapi Sesuai Gambar 2 */}
           {/* ========================================================= */}
           <div
-            className="absolute inset-0 w-full h-full rounded-[1.7rem] bg-white overflow-hidden flex flex-col justify-between p-5 text-gray-800"
+            className="absolute inset-0 w-full h-full rounded-[1.7rem] bg-white overflow-hidden flex flex-col justify-between text-gray-800"
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
@@ -243,11 +255,12 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
               pointerEvents: isFlipped ? "auto" : "none",
             }}
           >
-            {/* Background Ornamen Geometris Biru Penuh di Sisi Atas */}
-            <div className="absolute inset-x-0 top-0 h-36 bg-[#1e40af] overflow-hidden pointer-events-none">
+            {/* Header Bagian Atas: Kubah Lengkung Putih dengan Ornamen Geometris Biru */}
+            <div className="relative w-full h-32 bg-[#1e40af] overflow-hidden">
+              {/* Pattern Geometris Biru Lebat di Sisi Atas */}
               <svg
                 className="w-full h-full text-white opacity-40"
-                viewBox="0 0 340 144"
+                viewBox="0 0 340 130"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="4"
@@ -255,61 +268,66 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
                 <path d="M10 10 h40 v40 h-40 v-20 h20 M70 10 h40 v40 h-40 v-20 h20 M130 10 h40 v40 h-40 v-20 h20 M190 10 h40 v40 h-40 v-20 h20 M250 10 h40 v40 h-40 v-20 h20 M310 10 h40 v40 h-40 v-20 h20" />
                 <path d="M30 60 h40 v40 h-40 v-20 h20 M90 60 h40 v40 h-40 v-20 h20 M150 60 h40 v40 h-40 v-20 h20 M210 60 h40 v40 h-40 v-20 h20 M270 60 h40 v40 h-40 v-20 h20" />
               </svg>
-            </div>
 
-            {/* Header Lengkungan Kubah Putih (Arch Mosque) */}
-            <div className="relative z-10 -mx-5 -mt-5 pt-7 pb-4 px-5">
+              {/* Lengkungan Kubah Masjid Putih */}
               <div
-                className="bg-white rounded-t-[2.5rem] pt-3 pb-2 px-4 shadow-sm border-t border-gray-100 flex items-center justify-center gap-3"
-                style={{
-                  clipPath: "ellipse(95% 85% at 50% 85%)",
-                }}
+                className="absolute inset-x-3 bottom-0 h-24 bg-white rounded-t-[2.2rem] pt-3 px-3 shadow-xs flex items-center justify-center gap-2.5"
               >
                 {/* Logo Masjid OSBA */}
                 <div className="shrink-0">
-                  <OsbaLogo size={42} color="#1d4ed8" />
+                  <OsbaLogo size={44} color="#1d4ed8" />
                 </div>
-                {/* Teks Organisasi Santri Babussalam */}
+                {/* Teks Header Resmi */}
                 <div className="text-left">
-                  <p className="text-[12px] font-black text-gray-900 leading-tight">
-                    Organisasi
-                  </p>
-                  <p className="text-[12px] font-black text-gray-900 leading-tight">
-                    Santri
-                  </p>
-                  <div className="flex items-center gap-1.5 mt-0.5">
-                    <span className="text-[12px] font-black text-gray-900 leading-tight">
-                      Babussalam
-                    </span>
-                    <span className="text-[10px] font-arabic text-gray-700 font-bold" dir="rtl">
-                      جمعية طلبة باب السلام
-                    </span>
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-[12px] font-black text-gray-900 leading-tight">
+                        Organisasi
+                      </p>
+                      <p className="text-[12px] font-black text-gray-900 leading-tight">
+                        Santri
+                      </p>
+                      <p className="text-[12px] font-black text-gray-900 leading-tight">
+                        Babussalam
+                      </p>
+                    </div>
+                    <div className="text-right pt-0.5">
+                      <p className="text-[10px] font-arabic font-bold text-gray-800 leading-tight" dir="rtl">
+                        جمعية طلبة
+                      </p>
+                      <p className="text-[10px] font-arabic font-bold text-gray-800 leading-tight" dir="rtl">
+                        باب السلام
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Garis Horizontal Biru Panjang */}
-            <div className="w-full h-[2.5px] bg-[#1d4ed8] my-1 rounded-full" />
+            {/* Garis Pembatas Biru Solid */}
+            <div className="px-5">
+              <div className="w-full h-[2.5px] bg-[#1d4ed8] rounded-full" />
+            </div>
 
-            {/* Konten Belakang: Alamat, Email, Instagram, Pernyataan */}
-            <div className="flex flex-col justify-around flex-1 my-1 px-1">
+            {/* Badan Kartu Belakang: Teks Alamat, Kontak, dan Ketentuan */}
+            <div className="px-5 py-2 flex flex-col justify-between flex-1">
               {/* Alamat Lengkap */}
               <p className="text-[9.5px] leading-relaxed text-gray-700 text-center font-medium">
-                Radar Auri, Jl Swadaya 3 No.40 Rt.005/011 Kel. Mekarsari, Kec. Cimanggis, Depok, Jawa Barat, Indonesia 16452
+                Radar Auri, Jl Swadaya 3 No.40 Rt.005/011 Kel. Mekarsari,<br />
+                Kec. Cimanggis, Depok, Jawa Barat, Indonesia 16452
               </p>
 
-              {/* Email & Instagram dengan Ikon */}
+              {/* Kontak Email & Instagram Berjajar Rapi */}
               <div className="flex flex-col items-center gap-1.5 my-2">
                 <div className="flex items-center gap-2 text-[10px] font-semibold text-gray-800">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5 text-gray-600">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5 text-gray-600 shrink-0">
                     <rect x="2" y="4" width="20" height="16" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
                   <span>babussalamsc27@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-2 text-[10px] font-semibold text-gray-800">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5 text-gray-600">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5 text-gray-600 shrink-0">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
@@ -318,25 +336,25 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
                 </div>
               </div>
 
-              {/* Teks Pernyataan Resmi ID Card Pengurus */}
-              <p className="text-[9px] leading-normal text-gray-600 text-center font-normal px-2">
+              {/* Paragraf Ketentuan Resmi Pengurus */}
+              <p className="text-[8.5px] leading-relaxed text-gray-600 text-center font-normal px-1">
                 Kartu ini merupakan alat pengenal untuk pengurus{" "}
-                <b className="font-bold text-gray-800">organisasi santri babussalam</b>, kartu ini berlaku sampai akhir masa jabatan, apabila menemukan kartu ini harap mengembalikannya kepada pengurus Osba atau pengurus Ponpes Babussalam
+                <b className="font-bold text-gray-900">organisasi santri babussalam</b>, kartu ini berlaku sampai akhir masa jabatan, apabila menemukan kartu ini harap mengembalikannya kepada pengurus Osba atau pengurus Ponpes Babussalam
               </p>
             </div>
 
-            {/* Footer Belakang: Babussalam.sch.id (Teks Lebih Besar dengan Garis Bawah Biru) */}
-            <div className="pt-2 pb-1 border-t border-gray-100 flex flex-col items-center">
+            {/* Bagian Bawah Belakang: Babussalam.sch.id Rapi Terpusat */}
+            <div className="pb-4 pt-1 flex flex-col items-center">
               <a
                 href="https://babussalam.sch.id"
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-[13px] font-extrabold text-[#1d4ed8] hover:underline tracking-wide"
+                className="text-[13px] font-black text-[#1d4ed8] hover:underline tracking-wide"
               >
                 Babussalam.sch.id
               </a>
-              <div className="w-16 h-0.5 bg-[#1d4ed8] mt-0.5 rounded-full" />
+              <div className="w-16 h-0.5 bg-[#1d4ed8] mt-1 rounded-full" />
             </div>
           </div>
         </div>
