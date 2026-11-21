@@ -51,7 +51,7 @@ export function DivisiModal({ slug, onClose }: DivisiModalProps) {
       />
       {selectedAnggota ? (
         <div
-          className="relative z-10 w-full max-w-sm mx-auto rounded-t-3xl md:rounded-3xl shadow-2xl overflow-hidden bg-white"
+          className="relative z-10 w-full max-w-sm mx-auto"
         >
           <AnggotaCard
             anggota={selectedAnggota}
