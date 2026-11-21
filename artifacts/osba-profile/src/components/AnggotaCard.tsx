@@ -65,12 +65,12 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
         
         <button
           onClick={() => setIsFlipped(!isFlipped)}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 transition-all active:scale-95 cursor-pointer"
+          className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 transition-all active:scale-95 cursor-pointer"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
-          {isFlipped ? "Lihat Depan" : "Balik Kartu (3D)"}
+          {isFlipped ? "Tampak Depan" : "Tampak Belakang (3D)"}
         </button>
       </div>
 
@@ -97,14 +97,15 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
           style={{
             transform: `rotateX(${rotateX}deg) rotateY(${rotateY + (isFlipped ? 180 : 0)}deg)`,
             transformStyle: "preserve-3d",
-            transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+            WebkitTransformStyle: "preserve-3d",
+            transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
           className="relative w-full h-full rounded-[1.8rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35)] transition-shadow duration-300"
         >
           {/* Card Border Frame Casing (Aluminum / Metallic Frame seperti di foto fisik) */}
           <div
-            className="absolute -inset-1 rounded-[2rem] bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 -z-10 shadow-inner border border-gray-300"
-            style={{ transform: "translateZ(-2px)" }}
+            className="absolute -inset-1 rounded-[2rem] bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 shadow-inner border border-gray-300 pointer-events-none"
+            style={{ transform: "translateZ(-1px)" }}
           />
 
           {/* Hologram / Specular Glare Effect */}
@@ -112,6 +113,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
             className="absolute inset-0 rounded-[1.8rem] z-30 pointer-events-none transition-opacity duration-200"
             style={{
               background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255,255,255,${glare.opacity}) 0%, rgba(255,255,255,0) 65%)`,
+              transform: isFlipped ? "rotateY(180deg) translateZ(2px)" : "translateZ(2px)",
             }}
           />
 
@@ -123,7 +125,8 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
-              transform: "rotateY(0deg)",
+              transform: "rotateY(0deg) translateZ(1px)",
+              pointerEvents: isFlipped ? "none" : "auto",
             }}
           >
             {/* Header: Teks OSBA & Tahun 2027 */}
@@ -186,22 +189,11 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
 
             {/* Bagian Bawah: Blue Bar Elegan (Sesuai Foto ID Card) */}
             <div className="relative z-10 bg-gradient-to-r from-[#143468] via-[#173e80] to-[#1e4eb8] text-white p-5 rounded-b-[1.7rem] shadow-xl">
-              <div className="flex flex-col gap-1.5">
-                {/* Baris Atas: Nama Panggilan Besar & Domain di Kanan Atas */}
-                <div className="flex justify-between items-baseline">
-                  <h3 className="text-2xl font-black tracking-tight leading-none text-white drop-shadow-sm">
-                    {anggota.panggilan || anggota.nama.split(" ")[0]}
-                  </h3>
-                  <a
-                    href="https://babussalam.sch.id"
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="text-[12px] font-bold text-blue-200 hover:text-white transition-colors tracking-wide underline underline-offset-2"
-                  >
-                    babussalam.sch.id
-                  </a>
-                </div>
+              <div className="relative flex flex-col gap-1.5 pb-2">
+                {/* Baris Atas: Nama Panggilan Besar */}
+                <h3 className="text-2xl font-black tracking-tight leading-none text-white drop-shadow-sm">
+                  {anggota.panggilan || anggota.nama.split(" ")[0]}
+                </h3>
 
                 {/* Nama Lengkap */}
                 <p className="text-[12px] font-medium text-blue-100 truncate max-w-[280px]">
@@ -214,7 +206,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
                 </p>
 
                 {/* Button Member Pill (Bentuk Pill Oval dengan Outer Ring & Fill Putih di Kanan) */}
-                <div className="mt-2 flex items-center">
+                <div className="mt-2 flex items-center justify-between">
                   <div className="inline-flex items-center rounded-full border border-white/50 p-[2px] bg-white/10 backdrop-blur-xs shadow-xs">
                     <span className="px-2.5 py-0.5 text-[10px] font-semibold text-white/95">
                       Member
@@ -223,6 +215,17 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
                       {divisionCleanName}
                     </span>
                   </div>
+
+                  {/* Domain Diposisikan di Ujung Bawah Kanan */}
+                  <a
+                    href="https://babussalam.sch.id"
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-[11.5px] font-bold text-blue-200 hover:text-white transition-colors tracking-wide underline underline-offset-2"
+                  >
+                    Babussalam.sch.id
+                  </a>
                 </div>
               </div>
             </div>
@@ -236,7 +239,8 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
-              transform: "rotateY(180deg)",
+              transform: "rotateY(180deg) translateZ(1px)",
+              pointerEvents: isFlipped ? "auto" : "none",
             }}
           >
             {/* Background Ornamen Geometris Biru Penuh di Sisi Atas */}
