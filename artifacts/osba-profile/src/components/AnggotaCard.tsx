@@ -10,11 +10,24 @@ interface AnggotaCardProps {
 }
 
 export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
+  // Rotasi kartu 3D bebas rotasi Y terus menerus saat digeser (drag/swipe)
+  const [currentRotY, setCurrentRotY] = useState(0);
+  const [dragOffsetRotY, setDragOffsetRotY] = useState(0);
   const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
+
   const cardRef = useRef<HTMLDivElement>(null);
+  const dragStartX = useRef<number>(0);
+  const dragStartY = useRef<number>(0);
+  const hasDragged = useRef<boolean>(false);
+
+  // Total rotasi Y saat ini (derajat)
+  const totalRotY = currentRotY + dragOffsetRotY;
+
+  // Menentukan sisi mana yang sedang menghadap user
+  const normalizedAngle = (((totalRotY % 360) + 360) % 360);
+  const isBackFacing = normalizedAngle > 90 && normalizedAngle < 270;
 
   // Deteksi slug divisi untuk ikon divisi
   const rawDivisi = anggota.divisi?.toLowerCase() || "";
@@ -30,8 +43,9 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
   else if (rawDivisi.includes("kesehatan")) divisiSlug = "kesehatan";
   else if (rawDivisi.includes("bph") || rawDivisi.includes("eksekutif")) divisiSlug = "bph";
 
+  // Mouse Move Tilt biasa saat kursor melayang (hover tanpa drag)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (isDragging || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -39,11 +53,8 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotX = -((y - centerY) / centerY) * 16;
-    const rotY = ((x - centerX) / centerX) * 16;
-
+    const rotX = -((y - centerY) / centerY) * 14;
     setRotateX(rotX);
-    setRotateY(rotY);
     setGlare({
       x: (x / rect.width) * 100,
       y: (y / rect.height) * 100,
@@ -52,8 +63,63 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
   };
 
   const handleMouseLeave = () => {
+    if (!isDragging) {
+      setRotateX(0);
+      setGlare({ x: 50, y: 50, opacity: 0 });
+    }
+  };
+
+  // Pointer Down (Mulai Drag dengan Mouse atau Touchscreen)
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    // Abaikan jika target klik adalah link/anchor atau tombol
+    const target = e.target as HTMLElement;
+    if (target.closest("a") || target.closest("button")) return;
+
+    setIsDragging(true);
+    hasDragged.current = false;
+    dragStartX.current = e.clientX;
+    dragStartY.current = e.clientY;
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  };
+
+  // Pointer Move (Sedang Drag / Geser Kartu)
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - dragStartX.current;
+    const deltaY = e.clientY - dragStartY.current;
+
+    if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) {
+      hasDragged.current = true;
+    }
+
+    // 1 pixel geser = 0.85 derajat rotasi kartu
+    setDragOffsetRotY(deltaX * 0.85);
+
+    // Tilt X dinamis saat digeser vertikal
+    const tiltX = Math.max(-20, Math.min(20, -deltaY * 0.2));
+    setRotateX(tiltX);
+  };
+
+  // Pointer Up (Selesai Drag / Lepas Geseran)
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    setIsDragging(false);
+
+    // Jika digeser, snap ke sudut terdekat (0° untuk depan, 180° untuk belakang, dsb)
+    if (hasDragged.current) {
+      const finalY = currentRotY + dragOffsetRotY;
+      // Snap ke kelipatan 180 derajat terdekat
+      const snappedRotY = Math.round(finalY / 180) * 180;
+      setCurrentRotY(snappedRotY);
+      setDragOffsetRotY(0);
+    } else {
+      // Jika hanya di-klik/tap cepat tanpa digeser, otomatis flip ke sisi sebaliknya
+      const targetY = isBackFacing ? Math.floor(currentRotY / 180) * 180 : Math.ceil((currentRotY + 1) / 180) * 180;
+      setCurrentRotY(targetY);
+      setDragOffsetRotY(0);
+    }
+
     setRotateX(0);
-    setRotateY(0);
     setGlare({ x: 50, y: 50, opacity: 0 });
   };
 
@@ -64,8 +130,8 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
 
   return (
     <div className="flex flex-col items-center justify-center p-2 sm:p-4 select-none">
-      {/* Tombol Balik & Navigasi */}
-      <div className="flex items-center justify-between w-full max-w-[340px] mb-4 px-2">
+      {/* Top Bar: Tombol Kembali & Petunjuk Interaktif Swipe */}
+      <div className="flex items-center justify-between w-full max-w-[340px] mb-3 px-2">
         {onBack ? (
           <button
             onClick={onBack}
@@ -75,18 +141,14 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
           </button>
         ) : <div />}
         
-        <button
-          onClick={() => setIsFlipped(!isFlipped)}
-          className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 transition-all active:scale-95 cursor-pointer"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-          </svg>
-          {isFlipped ? "Tampak Depan" : "Tampak Belakang (3D)"}
-        </button>
+        {/* Indikator Gesture / Swipe Interaktif */}
+        <div className="flex items-center gap-1.5 text-[11px] font-medium text-gray-500 bg-white/70 backdrop-blur-xs px-3 py-1 rounded-full border border-gray-200/60 shadow-2xs">
+          <span>👆</span>
+          <span>Geser kartu untuk membalik</span>
+        </div>
       </div>
 
-      {/* Lanyard Clip / Gantungan ID Card Fisik Logam */}
+      {/* Lanyard Clip / Gantungan ID Card Logam */}
       <div className="flex flex-col items-center -mb-3 z-20 pointer-events-none">
         <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-gray-400 via-gray-100 to-gray-300 border-2 border-gray-400/80 shadow-md flex items-center justify-center">
           <div className="w-3.5 h-3.5 rounded-full bg-amber-700/80 border border-amber-900/40 shadow-inner" />
@@ -99,18 +161,21 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
       {/* 3D Scene Wrapper */}
       <div
         style={{ perspective: 1200 }}
-        className="w-full max-w-[340px] aspect-[1/1.62] cursor-grab active:cursor-grabbing"
+        className="w-full max-w-[340px] aspect-[1/1.62] touch-none cursor-grab active:cursor-grabbing"
       >
         <div
           ref={cardRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          onClick={() => setIsFlipped(!isFlipped)}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
           style={{
-            transform: `rotateX(${rotateX}deg) rotateY(${rotateY + (isFlipped ? 180 : 0)}deg)`,
+            transform: `rotateX(${rotateX}deg) rotateY(${totalRotY}deg)`,
             transformStyle: "preserve-3d",
             WebkitTransformStyle: "preserve-3d",
-            transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+            transition: isDragging ? "none" : "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
           className="relative w-full h-full rounded-[1.8rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35)] transition-shadow duration-300"
         >
@@ -125,7 +190,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
             className="absolute inset-0 rounded-[1.8rem] z-30 pointer-events-none transition-opacity duration-200"
             style={{
               background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255,255,255,${glare.opacity}) 0%, rgba(255,255,255,0) 65%)`,
-              transform: isFlipped ? "rotateY(180deg) translateZ(2px)" : "translateZ(2px)",
+              transform: isBackFacing ? "rotateY(180deg) translateZ(2px)" : "translateZ(2px)",
             }}
           />
 
@@ -138,7 +203,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
               transform: "rotateY(0deg) translateZ(1px)",
-              pointerEvents: isFlipped ? "none" : "auto",
+              pointerEvents: isBackFacing ? "none" : "auto",
             }}
           >
             {/* Header: Teks OSBA & Tahun 2027 */}
@@ -244,7 +309,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
           </div>
 
           {/* ========================================================= */}
-          {/* SISI BELAKANG (BACK) - Layout Ditata Rapi & Turun Bawah    */}
+          {/* SISI BELAKANG (BACK) - Layout Bersih, Rapi & Turun Bawah   */}
           {/* ========================================================= */}
           <div
             className="absolute inset-0 w-full h-full rounded-[1.7rem] bg-white overflow-hidden flex flex-col justify-between text-gray-800"
@@ -252,7 +317,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
               transform: "rotateY(180deg) translateZ(1px)",
-              pointerEvents: isFlipped ? "auto" : "none",
+              pointerEvents: isBackFacing ? "auto" : "none",
             }}
           >
             {/* Header Bagian Atas: Kubah Ornamen Geometris Biru Bersih */}
@@ -275,7 +340,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
               />
             </div>
 
-            {/* Bagian Konten Header: Logo & Organisasi Santri Babussalam (Diturunkan di Bawah Ornamen) */}
+            {/* Bagian Konten Header: Logo & Organisasi Santri Babussalam (Di Bawah Ornamen) */}
             <div className="px-6 -mt-10 relative z-10 flex flex-col items-center">
               <div className="w-full flex items-center justify-center gap-3 bg-white py-1.5 px-3 rounded-2xl">
                 {/* Logo Masjid OSBA */}
@@ -310,7 +375,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
               <div className="w-full h-[2.5px] bg-[#1d4ed8] mt-3 mb-2 rounded-full" />
             </div>
 
-            {/* Badan Kartu Belakang: Alamat, Kontak, dan Pernyataan (Proporsional & Tidak Menumpuk) */}
+            {/* Badan Kartu Belakang: Alamat, Kontak, dan Pernyataan */}
             <div className="px-6 py-2 flex flex-col justify-between flex-1 text-center">
               {/* Alamat Lengkap */}
               <div className="my-auto">
