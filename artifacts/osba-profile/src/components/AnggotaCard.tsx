@@ -244,7 +244,7 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
           </div>
 
           {/* ========================================================= */}
-          {/* SISI BELAKANG (BACK) - Layout Bersih & Rapi Sesuai Gambar 2 */}
+          {/* SISI BELAKANG (BACK) - Layout Ditata Rapi & Turun Bawah    */}
           {/* ========================================================= */}
           <div
             className="absolute inset-0 w-full h-full rounded-[1.7rem] bg-white overflow-hidden flex flex-col justify-between text-gray-800"
@@ -255,67 +255,70 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
               pointerEvents: isFlipped ? "auto" : "none",
             }}
           >
-            {/* Header Bagian Atas: Kubah Lengkung Putih dengan Ornamen Geometris Biru */}
-            <div className="relative w-full h-32 bg-[#1e40af] overflow-hidden">
+            {/* Header Bagian Atas: Kubah Ornamen Geometris Biru Bersih */}
+            <div className="relative w-full h-24 bg-[#1e40af] overflow-hidden shrink-0">
               {/* Pattern Geometris Biru Lebat di Sisi Atas */}
               <svg
-                className="w-full h-full text-white opacity-40"
-                viewBox="0 0 340 130"
+                className="w-full h-full text-white opacity-45"
+                viewBox="0 0 340 100"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="4"
               >
                 <path d="M10 10 h40 v40 h-40 v-20 h20 M70 10 h40 v40 h-40 v-20 h20 M130 10 h40 v40 h-40 v-20 h20 M190 10 h40 v40 h-40 v-20 h20 M250 10 h40 v40 h-40 v-20 h20 M310 10 h40 v40 h-40 v-20 h20" />
-                <path d="M30 60 h40 v40 h-40 v-20 h20 M90 60 h40 v40 h-40 v-20 h20 M150 60 h40 v40 h-40 v-20 h20 M210 60 h40 v40 h-40 v-20 h20 M270 60 h40 v40 h-40 v-20 h20" />
+                <path d="M30 50 h40 v40 h-40 v-20 h20 M90 50 h40 v40 h-40 v-20 h20 M150 50 h40 v40 h-40 v-20 h20 M210 50 h40 v40 h-40 v-20 h20 M270 50 h40 v40 h-40 v-20 h20" />
               </svg>
 
-              {/* Lengkungan Kubah Masjid Putih */}
+              {/* Lengkungan Kubah Putih dengan Sudut Halus */}
               <div
-                className="absolute inset-x-3 bottom-0 h-24 bg-white rounded-t-[2.2rem] pt-3 px-3 shadow-xs flex items-center justify-center gap-2.5"
-              >
+                className="absolute inset-x-2 bottom-0 h-16 bg-white rounded-t-[2.4rem] shadow-xs"
+              />
+            </div>
+
+            {/* Bagian Konten Header: Logo & Organisasi Santri Babussalam (Diturunkan di Bawah Ornamen) */}
+            <div className="px-6 -mt-10 relative z-10 flex flex-col items-center">
+              <div className="w-full flex items-center justify-center gap-3 bg-white py-1.5 px-3 rounded-2xl">
                 {/* Logo Masjid OSBA */}
                 <div className="shrink-0">
-                  <OsbaLogo size={44} color="#1d4ed8" />
+                  <OsbaLogo size={42} color="#1d4ed8" />
                 </div>
-                {/* Teks Header Resmi */}
-                <div className="text-left">
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <p className="text-[12px] font-black text-gray-900 leading-tight">
-                        Organisasi
-                      </p>
-                      <p className="text-[12px] font-black text-gray-900 leading-tight">
-                        Santri
-                      </p>
-                      <p className="text-[12px] font-black text-gray-900 leading-tight">
-                        Babussalam
-                      </p>
-                    </div>
-                    <div className="text-right pt-0.5">
-                      <p className="text-[10px] font-arabic font-bold text-gray-800 leading-tight" dir="rtl">
-                        جمعية طلبة
-                      </p>
-                      <p className="text-[10px] font-arabic font-bold text-gray-800 leading-tight" dir="rtl">
-                        باب السلام
-                      </p>
-                    </div>
+                {/* Teks Organisasi & Kaligrafi Arab */}
+                <div className="flex items-center gap-3 text-left">
+                  <div className="border-r border-gray-200 pr-3">
+                    <p className="text-[12px] font-black text-gray-900 leading-[1.1]">
+                      Organisasi
+                    </p>
+                    <p className="text-[12px] font-black text-gray-900 leading-[1.1]">
+                      Santri
+                    </p>
+                    <p className="text-[12px] font-black text-gray-900 leading-[1.1]">
+                      Babussalam
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[11px] font-arabic font-bold text-gray-800 leading-tight" dir="rtl">
+                      جمعية طلبة
+                    </p>
+                    <p className="text-[11px] font-arabic font-bold text-gray-800 leading-tight" dir="rtl">
+                      باب السلام
+                    </p>
                   </div>
                 </div>
               </div>
+
+              {/* Garis Pembatas Biru Solid */}
+              <div className="w-full h-[2.5px] bg-[#1d4ed8] mt-3 mb-2 rounded-full" />
             </div>
 
-            {/* Garis Pembatas Biru Solid */}
-            <div className="px-5">
-              <div className="w-full h-[2.5px] bg-[#1d4ed8] rounded-full" />
-            </div>
-
-            {/* Badan Kartu Belakang: Teks Alamat, Kontak, dan Ketentuan */}
-            <div className="px-5 py-2 flex flex-col justify-between flex-1">
+            {/* Badan Kartu Belakang: Alamat, Kontak, dan Pernyataan (Proporsional & Tidak Menumpuk) */}
+            <div className="px-6 py-2 flex flex-col justify-between flex-1 text-center">
               {/* Alamat Lengkap */}
-              <p className="text-[9.5px] leading-relaxed text-gray-700 text-center font-medium">
-                Radar Auri, Jl Swadaya 3 No.40 Rt.005/011 Kel. Mekarsari,<br />
-                Kec. Cimanggis, Depok, Jawa Barat, Indonesia 16452
-              </p>
+              <div className="my-auto">
+                <p className="text-[9.5px] leading-relaxed text-gray-700 font-medium">
+                  Radar Auri, Jl Swadaya 3 No.40 Rt.005/011 Kel. Mekarsari,<br />
+                  Kec. Cimanggis, Depok, Jawa Barat, Indonesia 16452
+                </p>
+              </div>
 
               {/* Kontak Email & Instagram Berjajar Rapi */}
               <div className="flex flex-col items-center gap-1.5 my-2">
@@ -337,14 +340,16 @@ export function AnggotaCard({ anggota, warna, onBack }: AnggotaCardProps) {
               </div>
 
               {/* Paragraf Ketentuan Resmi Pengurus */}
-              <p className="text-[8.5px] leading-relaxed text-gray-600 text-center font-normal px-1">
-                Kartu ini merupakan alat pengenal untuk pengurus{" "}
-                <b className="font-bold text-gray-900">organisasi santri babussalam</b>, kartu ini berlaku sampai akhir masa jabatan, apabila menemukan kartu ini harap mengembalikannya kepada pengurus Osba atau pengurus Ponpes Babussalam
-              </p>
+              <div className="my-auto">
+                <p className="text-[8.5px] leading-relaxed text-gray-600 font-normal px-1">
+                  Kartu ini merupakan alat pengenal untuk pengurus{" "}
+                  <b className="font-bold text-gray-900">organisasi santri babussalam</b>, kartu ini berlaku sampai akhir masa jabatan, apabila menemukan kartu ini harap mengembalikannya kepada pengurus Osba atau pengurus Ponpes Babussalam
+                </p>
+              </div>
             </div>
 
             {/* Bagian Bawah Belakang: Babussalam.sch.id Rapi Terpusat */}
-            <div className="pb-4 pt-1 flex flex-col items-center">
+            <div className="pb-5 pt-1 flex flex-col items-center">
               <a
                 href="https://babussalam.sch.id"
                 target="_blank"
